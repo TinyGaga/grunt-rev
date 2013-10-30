@@ -36,7 +36,9 @@ grunt.initConfig({
     options: {
       encoding: 'utf8',
       algorithm: 'md5',
-      length: 8
+      length: 8,
+      mapping: true,
+      mapPath: 'dist/hashMap.json'
     },
     assets: {
       files: [{
