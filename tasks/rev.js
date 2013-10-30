@@ -26,8 +26,11 @@ module.exports = function(grunt) {
     var options = this.options({
       encoding: 'utf8',
       algorithm: 'md5',
-      length: 8
-    });
+      length: 8,
+      mapping: false,
+      mapPath: 'hashMap.json'
+    }),
+    maps = {};
 
     this.files.forEach(function(filePair) {
       filePair.src.forEach(function(f) {
@@ -38,11 +41,15 @@ module.exports = function(grunt) {
           outPath = path.resolve(path.dirname(f), renamed);
 
         grunt.verbose.ok().ok(hash);
+        maps[f] = prefix;
         fs.renameSync(f, outPath);
         grunt.log.write(f + ' ').ok(renamed);
 
       });
     });
+    if(options.mapping){
+      grunt.file.write(options.mapPath, JSON.stringify(maps, null, 4)); 
+    } 
 
   });
 

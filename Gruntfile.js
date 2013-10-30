@@ -56,6 +56,13 @@ module.exports = function(grunt) {
         },
         src: ['tmp/international.txt']
       },
+      mapping_options:{
+        options: {
+          mapping: true,
+          mapPath: "dist/hashMap.json"
+        },
+        src:['tmp/international.txt']
+      }
     },
 
     // Unit tests.
