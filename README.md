@@ -8,13 +8,13 @@ _If you haven't used [grunt][] before, be sure to check out the [Getting Started
 From the same directory as your project's [Gruntfile][Getting Started] and [package.json][], install this plugin with the following command:
 
 ```bash
-npm install grunt-rev --save-dev
+npm install grunt-revhashmap --save-dev
 ```
 
 Once that's done, add this line to your project's Gruntfile:
 
 ```js
-grunt.loadNpmTasks('grunt-rev');
+grunt.loadNpmTasks('grunt-revhashmap');
 ```
 
 If the plugin has been installed correctly, running `grunt --help` at the command line should list the newly-installed plugin's task or tasks. In addition, the plugin should be listed in package.json as a `devDependency`, which ensures that it will be installed whenever the `npm install` command is run.
@@ -32,16 +32,17 @@ In your project's Gruntfile, add a section named `rev` to the data object passed
 
 ```js
 grunt.initConfig({
-  rev: {
+  revhashmap: {
     options: {
       encoding: 'utf8',
       algorithm: 'md5',
       length: 8,
-      mapping: true,
-      mapPath: 'dist/hashMap.json'
+      mapping: true
     },
-    assets: {
+    dist: {
       files: [{
+        cwd: 'dist',
+        dest: 'dist',
         src: [
           'img/**/*.{jpg,jpeg,gif,png}',
           'fonts/**/*.{eot,svg,ttf,woff}'
@@ -69,6 +70,10 @@ Default value: `'md5'`
 #### options.length
 Type: `Number`
 Default value: `8`
+
+#### options.mapping
+Type: `Boolean`
+Default value: `false`
 
 The number of characters of the file content hash to prefix the file name with.
 
